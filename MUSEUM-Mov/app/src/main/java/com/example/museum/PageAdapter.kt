@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentViewHolder
@@ -24,6 +25,13 @@ class PageAdapter(
         init {
             tituloTextView = itemView.findViewById(R.id.tv_títle_activity_type)
             activitiesReciclerView = itemView.findViewById(R.id.rv_activities)
+            activitiesReciclerView
+                .addItemDecoration(
+                    DividerItemDecoration(
+                        activitiesReciclerView.context,
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
         }
     }
 
@@ -51,6 +59,7 @@ class PageAdapter(
         holder.itemView.tv_títle_activity_type.text = titulo
         val activitiesAdapter = ActivitiesRecyclerAdapter(
             titulo,
+            contextActivity,
             contextActivity
         )
 

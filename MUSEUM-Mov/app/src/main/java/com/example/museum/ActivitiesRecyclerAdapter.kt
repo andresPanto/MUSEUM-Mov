@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ActivitiesRecyclerAdapter(
     private val activityType: String,
-    private val contextActivity: MainActivity
+    private val contextActivity: MainActivity,
+    private val clickListener: MyOnActivityListener
 ): RecyclerView.Adapter<ActivitiesRecyclerAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(
@@ -34,6 +35,7 @@ class ActivitiesRecyclerAdapter(
             pictureImageView = view.findViewById(R.id.iv_activity_preview)
             buyButton = view.findViewById(R.id.btn_buy_activity_preview)
             buyButton.setOnClickListener{goBuyActivity()}
+
         }
 
         fun goBuyActivity(){
@@ -43,6 +45,7 @@ class ActivitiesRecyclerAdapter(
                 Log.i("ID", "No id ")
             }
         }
+
 
 
     }
@@ -76,7 +79,15 @@ class ActivitiesRecyclerAdapter(
         holder.id = activity.id
 
         holder.pictureImageView.setImageResource(R.drawable.ejemplo)
+        holder.itemView.setOnClickListener{
+            clickListener.onActivityClicked(activity, position)
+        }
+
     }
 
+}
 
+
+interface MyOnActivityListener{
+    fun onActivityClicked(activity: DummyActivity, position: Int)
 }
