@@ -1,6 +1,5 @@
 package com.example.museum
 
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -46,12 +45,6 @@ class MainActivity : AppCompatActivity(), MyOnActivityListener {
 
     override fun onActivityClicked(activity: DummyActivity, position: Int) {
             Log.i("OnClick", "Pos: $position, Name: ${activity.name}")
-        val intent: Intent = Intent(
-            this,
-            ActivityDetailActivity::class.java
-        )
-        startActivity(intent)
-
     }
 
 }
