@@ -1,5 +1,6 @@
 package com.example.museum
 
+import android.content.Intent
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.util.Log
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.museum.ui.login.LoginActivity
 
 class ActivitiesRecyclerAdapter(
     private val activityType: String,
@@ -39,6 +41,8 @@ class ActivitiesRecyclerAdapter(
         }
 
         fun goBuyActivity(){
+            val intent : Intent = Intent(contextActivity,LoginActivity::class.java)
+            contextActivity.startActivity(intent)
             if (id != null){
                 Log.i("ID", "El id es $id")
             }else{
