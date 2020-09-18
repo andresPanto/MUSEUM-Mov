@@ -41,7 +41,7 @@ class ActivitiesRecyclerAdapter(
         }
 
         fun goBuyActivity(){
-            val intent : Intent = Intent(contextActivity,LoginActivity::class.java)
+            val intent : Intent = Intent(contextActivity,BuyActivity::class.java)
             contextActivity.startActivity(intent)
             if (id != null){
                 Log.i("ID", "El id es $id")
