@@ -6,10 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.museum.models.ArtworkAuthor
+import com.example.museum.models.Author
 import java.security.AccessControlContext
 
 class AuthorsAdapter(
-    private val listAuthors: List<DummyAuthor>,
+    private val listArtworkAuthor: ArrayList<ArtworkAuthor>,
     private val context: ArtworkDetailActivity,
     private val recyclerView: RecyclerView,
     private val clickListener: MyOnAuthorsClickedListener
@@ -39,19 +42,24 @@ class AuthorsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listAuthors.size
+        return listArtworkAuthor.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val author : DummyAuthor = listAuthors[position]
-        holder.authorImageView.setImageResource(R.drawable.author)
-        holder.authorTitleTextView.text = author.name
+        val author : Author = listArtworkAuthor[position].author as Author
+        //holder.authorImageView.setImageResource(R.drawable.author)
+        Glide
+            .with(context)
+            .load(author.imagePath)
+            .into(holder.authorImageView)
+
+        holder.authorTitleTextView.text = author.fullName
         holder.itemView.setOnClickListener{
-            clickListener.onAuthorClicked(position)
+            clickListener.onAuthorClicked(author, position)
         }
     }
 }
 
 interface MyOnAuthorsClickedListener{
-    fun onAuthorClicked(position: Int)
+    fun onAuthorClicked(author: Author, position: Int)
 }
