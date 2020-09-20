@@ -2,6 +2,7 @@ package com.example.museum.httpHandlers
 
 import android.util.Log
 import com.beust.klaxon.Klaxon
+import com.example.museum.environment.EnvironmentVariables
 import com.example.museum.models.Schedule
 import com.github.kittinunf.fuel.httpDelete
 import com.github.kittinunf.fuel.httpGet
@@ -11,7 +12,7 @@ import com.github.kittinunf.result.Result
 
 class ScheduleHTTPHandler {
 
-    val URLPrincipal: String = "http://192.168.0.132:1337/schedule"
+    val URLPrincipal: String = EnvironmentVariables.baseURL + "/schedule"
 
     fun getAll(): ArrayList<Schedule> {
         val url = URLPrincipal;

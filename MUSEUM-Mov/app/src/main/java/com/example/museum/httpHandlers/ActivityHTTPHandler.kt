@@ -2,6 +2,7 @@ package com.example.museum.httpHandlers
 
 import android.util.Log
 import com.beust.klaxon.Klaxon
+import com.example.museum.environment.EnvironmentVariables
 import com.example.museum.models.Activity
 import com.github.kittinunf.fuel.httpDelete
 import com.github.kittinunf.fuel.httpGet
@@ -11,7 +12,7 @@ import com.github.kittinunf.result.Result
 
 class ActivityHTTPHandler {
 
-    val URLPrincipal: String = "http://192.168.0.132:1337/activity"
+    val URLPrincipal: String = EnvironmentVariables.baseURL + "/activity"
 
     fun getAll(): ArrayList<Activity> {
         val url = URLPrincipal;
