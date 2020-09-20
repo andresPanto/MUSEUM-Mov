@@ -1,1 +1,2 @@
 {"$$indexCreated":{"fieldName":"id","unique":true,"sparse":false}}
+{"username":"usuario1","password":"SuperS3gura","email":"andrespantoja@gmail.com","createdAt":1600569103479,"updatedAt":1600569103479,"id":1,"status":true,"full_name":"Andrés Pantoja","phone_number":"+593983495568","img_path":"https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659651_960_720.png","_id":1}

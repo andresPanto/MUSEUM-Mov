@@ -1,1 +1,2 @@
 {"$$indexCreated":{"fieldName":"id","unique":true,"sparse":false}}
+{"schedule":"11:30-17:45","capacity":10,"activity":1,"createdAt":1600569276475,"updatedAt":1600569276475,"id":1,"status":true,"_id":1}

@@ -1,1 +1,2 @@
 {"$$indexCreated":{"fieldName":"id","unique":true,"sparse":false}}
+{"quantity":2,"total":25.5,"user":1,"schedule":1,"createdAt":1600569296155,"updatedAt":1600569296155,"id":1,"status":true,"attendance_date":"2020-09-09","purchase_time":"2020-02-02 15:02:00","_id":1}
