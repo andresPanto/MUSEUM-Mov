@@ -45,7 +45,13 @@ class ActivitiesRecyclerAdapter(
         }
 
         fun goBuyActivity(){
-          TODO("Enviar a pantalla de comprar")
+            val intent : Intent = Intent(contextActivity,BuyActivity::class.java)
+            contextActivity.startActivity(intent)
+            if (id != null){
+                Log.i("ID", "El id es $id")
+            }else{
+                Log.i("ID", "No id ")
+            }
         }
 
 

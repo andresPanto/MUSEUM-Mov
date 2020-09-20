@@ -5,17 +5,34 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="d1b93d0d-a106-4d24-9e97-11ddfd5ff1a7" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_user.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/museum/BuyActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_buy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+>>>>>>> desarrollo
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_API_29" />
+=======
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_29" />
+>>>>>>> desarrollo
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -61,16 +78,19 @@
     <key name="android.template.-1151765874">
       <recent name="com.example.museum" />
     </key>
-    <key name="android.template.-2003644414">
-      <recent name="com.example.museum" />
-    </key>
-    <key name="android.template.-636885216">
+    <key name="android.template.-210007168">
       <recent name="com.example.museum" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+    </key>
+    <key name="android.template.-2003644414">
+      <recent name="com.example.museum" />
+    </key>
+    <key name="android.template.-636885216">
+      <recent name="com.example.museum" />
     </key>
   </component>
   <component name="RunManager">
@@ -159,6 +179,7 @@
       <screen x="0" y="27" width="1920" height="981" />
     </state>
     <state x="543" y="275" width="824" height="491" key="AndroidCreateResourceFileDialog/0.27.1920.981/1920.312.1366.768@0.27.1920.981" timestamp="1600226036488" />
+<<<<<<< HEAD
     <state width="1874" height="386" key="GridCell.Tab.0.bottom" timestamp="1600561666854">
       <screen x="0" y="27" width="1920" height="981" />
     </state>
@@ -179,6 +200,28 @@
     </state>
     <state width="662" height="169" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1600309696601" />
     <state width="1874" height="386" key="GridCell.Tab.0.right/0.27.1920.981/1920.312.1366.768@0.27.1920.981" timestamp="1600561666854" />
+=======
+    <state width="662" height="145" key="GridCell.Tab.0.bottom" timestamp="1600438626935">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="662" height="145" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1600438626935" />
+    <state width="1874" height="252" key="GridCell.Tab.0.bottom/0.27.1920.981/1920.312.1366.768@0.27.1920.981" timestamp="1600230561255" />
+    <state width="662" height="145" key="GridCell.Tab.0.center" timestamp="1600438626934">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="662" height="145" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1600438626934" />
+    <state width="1874" height="252" key="GridCell.Tab.0.center/0.27.1920.981/1920.312.1366.768@0.27.1920.981" timestamp="1600230561255" />
+    <state width="662" height="145" key="GridCell.Tab.0.left" timestamp="1600438626933">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="662" height="145" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1600438626933" />
+    <state width="1874" height="252" key="GridCell.Tab.0.left/0.27.1920.981/1920.312.1366.768@0.27.1920.981" timestamp="1600230561255" />
+    <state width="662" height="145" key="GridCell.Tab.0.right" timestamp="1600438626935">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="662" height="145" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1600438626935" />
+    <state width="1874" height="252" key="GridCell.Tab.0.right/0.27.1920.981/1920.312.1366.768@0.27.1920.981" timestamp="1600230561255" />
+>>>>>>> desarrollo
     <state x="732" y="297" width="446" height="447" key="chooseDestDirectoryDialog" timestamp="1600184156103">
       <screen x="0" y="27" width="1920" height="981" />
     </state>
@@ -187,6 +230,7 @@
       <screen x="0" y="27" width="1920" height="981" />
     </state>
     <state x="100" y="127" width="1720" height="781" key="com.android.tools.idea.avdmanager.AvdListDialog/0.27.1920.981/1920.312.1366.768@0.27.1920.981" timestamp="1599617982420" />
+<<<<<<< HEAD
     <state x="616" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1600392779242">
       <screen x="0" y="27" width="1920" height="981" />
     </state>
@@ -195,5 +239,12 @@
       <screen x="0" y="27" width="1920" height="981" />
     </state>
     <state x="623" y="241" width="672" height="678" key="search.everywhere.popup/0.27.1920.981/1920.312.1366.768@0.27.1920.981" timestamp="1600470899605" />
+=======
+    <state x="438" y="249" key="com.intellij.ide.util.TipDialog" timestamp="1600438509976">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="438" y="249" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1600438509976" />
+    <state x="616" y="345" key="com.intellij.ide.util.TipDialog/0.27.1920.981/1920.312.1366.768@0.27.1920.981" timestamp="1599740529992" />
+>>>>>>> desarrollo
   </component>
 </project>

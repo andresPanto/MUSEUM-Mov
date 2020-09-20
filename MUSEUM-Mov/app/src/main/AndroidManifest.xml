@@ -16,10 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AuthorDetailActivity"></activity>
+        <activity android:name=".BuyActivity"></activity>
+        <activity android:name=".AuthorDetailActivity" />
         <activity android:name=".ArtworkDetailActivity" />
         <activity android:name=".ActivityDetailActivity" />
-        <activity android:name=".UpdateAccount"/>
+        <activity android:name=".UpdateAccount" />
         <activity android:name=".RegisterUser" />
         <activity android:name=".UserAccount" />
         <activity android:name=".ui.login.LoginActivity" />
