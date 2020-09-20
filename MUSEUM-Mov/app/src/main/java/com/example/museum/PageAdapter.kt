@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentViewHolder
+import com.example.museum.httpHandlers.ActivityHTTPHandler
+import com.example.museum.models.Activity
 import kotlinx.android.synthetic.main.activities_types_view_pager.view.*
 
 class PageAdapter(
@@ -37,10 +39,10 @@ class PageAdapter(
 
 
     var listaTitulos: List<String> = listOf(
-        "Tours",
-        "Films",
-        "Performances",
-        "Exhibitions"
+        "Tour",
+        "Film",
+        "Performance",
+        "Exhibition"
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder {
@@ -56,9 +58,11 @@ class PageAdapter(
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         val titulo = listaTitulos[position]
-        holder.itemView.tv_títle_activity_type.text = titulo
+        holder.itemView.tv_títle_activity_type.text = titulo + "s"
+        val activities: ArrayList<Activity> = ActivityHTTPHandler().getAllByType(titulo)
         val activitiesAdapter = ActivitiesRecyclerAdapter(
             titulo,
+            activities,
             contextActivity,
             contextActivity
         )
