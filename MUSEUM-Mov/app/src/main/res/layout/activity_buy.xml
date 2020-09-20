@@ -117,10 +117,9 @@
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/choose_your_schedule"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTime"
-        app:layout_constraintHorizontal_bias="0.716"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
@@ -128,10 +127,9 @@
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         android:text="@string/quantity"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumber"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView29"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
@@ -141,29 +139,19 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:text="@string/totals"
-        app:layout_constraintBottom_toBottomOf="@+id/textView33"
-        app:layout_constraintEnd_toStartOf="@+id/textView33" />
+        app:layout_constraintBottom_toBottomOf="@+id/numberPicker"
+        app:layout_constraintEnd_toStartOf="@+id/textView33"
+        app:layout_constraintTop_toTopOf="@+id/numberPicker" />
 
     <TextView
         android:id="@+id/textView33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="300.00"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTime"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
-
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="48dp"
-        android:ems="10"
-        android:inputType="time"
-        app:layout_constraintBottom_toBottomOf="@+id/textView29"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView32"
+        app:layout_constraintTop_toTopOf="@+id/textView32"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="342dp" />
 
     <Button
         android:id="@+id/button"
@@ -175,16 +163,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
-    <EditText
-        android:id="@+id/editTextNumber"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="113dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView29"
+        app:layout_constraintStart_toEndOf="@+id/textView29"
+        app:layout_constraintTop_toTopOf="@+id/textView29" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker"
         android:layout_width="100dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="76dp"
-        android:ems="10"
-        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/textView30"
         app:layout_constraintEnd_toStartOf="@+id/textView32"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView30"
         app:layout_constraintTop_toTopOf="@+id/textView30"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
