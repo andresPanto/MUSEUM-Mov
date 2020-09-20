@@ -9,26 +9,27 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="405dp"
-        android:layout_height="208dp"
+        android:id="@+id/iv_artwork_detail_image"
+        android:layout_width="411dp"
+        android:layout_height="202dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/artwork2"
-        tools:srcCompat="@drawable/artwork2" />
+        app:srcCompat="@drawable/ejemplo"
+        tools:srcCompat="@drawable/ejemplo" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/activity_title_layout_background"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/iv_artwork_detail_image">
 
         <TextView
             android:id="@+id/tv_artwork_name"
@@ -42,26 +43,20 @@
             android:id="@+id/tv_artwork_type_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Film" />
+            android:text="Film"
+            android:textSize="18sp" />
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_authors"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
-        android:layout_height="280dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
@@ -69,8 +64,10 @@
             android:id="@+id/tv_year_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Year" />
+            android:text="Year"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_year_artwork"
@@ -87,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Description" />
+            android:text="Description"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_artwork_description"
@@ -104,7 +102,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Authors" />
+            android:text="Authors"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_authors"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
 
     </LinearLayout>
 
