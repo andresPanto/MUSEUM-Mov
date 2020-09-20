@@ -35,11 +35,21 @@
     <string name="select_image">Select Image</string>
     <string name="name">Name:</string>
     <string name="save">Save</string>
-    
+
     <string name="attendance_time">Attendance time</string>
     <string name="purchase_time">Purchase time:</string>
     <string name="quantity">Quantity:</string>
     <string name="schedule">Schedule:</string>
     <string name="total">Total:</string>
     <string name="edit">Edit!</string>
+    
+    <string name="performance">Performance</string>
+    <string name="price">Price</string>
+    <string name="duration">Duration</string>
+    <string name="buy_your_ticket">Buy Your Ticket</string>
+    <string name="pick_a_data">Pick a Data</string>
+    <string name="selected_date">Selected Date</string>
+    <string name="choose_your_schedule">Choose Your Schedule</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="totals">Total:</string>
 </resources>
