@@ -3,6 +3,7 @@ package com.example.museum
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_update_account.*
 
 class UpdateAccount : AppCompatActivity() {
@@ -20,6 +21,19 @@ class UpdateAccount : AppCompatActivity() {
         var name = txt_name_update.toString()
         var email = txt_email_update.toString()
         var phone = txt_phone_update.toString()
-        Log.i("update values","${username}, ${name}, ${email}, ${phone}")
+
+        if(username.length==0){
+            Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+        }else if(name.length==0){
+            Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+        }else if(email.length==0){
+            Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+        }else if(phone.length==0){
+            Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+        }else{
+            Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+            Log.i("update values","${username}, ${name}, ${email}, ${phone}")
+        }
+
     }
 }

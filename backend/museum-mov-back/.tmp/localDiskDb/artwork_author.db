@@ -1,7 +1,0 @@
-{"$$indexCreated":{"fieldName":"id","unique":true,"sparse":false}}
-{"artwork":3,"author":1,"createdAt":1600570034196,"updatedAt":1600570034196,"id":1,"_id":1}
-{"artwork":2,"author":4,"createdAt":1600570044043,"updatedAt":1600570044043,"id":2,"_id":2}
-{"artwork":6,"author":6,"createdAt":1600570051466,"updatedAt":1600570051466,"id":3,"_id":3}
-{"artwork":7,"author":2,"createdAt":1600570061533,"updatedAt":1600570061533,"id":4,"_id":4}
-{"artwork":2,"author":4,"createdAt":1600570068190,"updatedAt":1600570068190,"id":5,"_id":5}
-{"artwork":3,"author":3,"createdAt":1600570075196,"updatedAt":1600570075196,"id":6,"_id":6}

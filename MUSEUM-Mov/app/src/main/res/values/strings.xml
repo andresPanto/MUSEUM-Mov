@@ -52,4 +52,6 @@
     <string name="choose_your_schedule">Choose Your Schedule</string>
     <string name="buy_now">Buy Now</string>
     <string name="totals">Total:</string>
+
+    <string name="calendar">Calendar</string>
 </resources>

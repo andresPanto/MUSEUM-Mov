@@ -33,32 +33,32 @@ class MainActivity : AppCompatActivity(), MyOnActivityListener {
         }
 
         val users : ArrayList<User> = UserHTTPHandler().getAll()
-
-        users.forEach {
-            Log.i("User", "${it.username}")
-
-            Log.i("User", "${it.email}")
-        }
-
-
-        val purchases : ArrayList<Purchase> = PurchaseHTTPHandler().getAll()
-
-        purchases.forEach {
-            Log.i("Purchase", "${it.dateAttendanceDate.toString()}")
-
-            Log.i("Purchase", "${it.timePurchaseTime.toString()}")
-            val user: User = it.user as User
-            val schedule: Schedule = it.schedule as Schedule
-
-            Log.i("Purchase", "${user.username}")
-            Log.i("Purchase", "${schedule.schedule}")
-
-        }
-
-        Glide.with(this)
-            .load(users[0].imagePath)
-            .into(iv_acount_image)
-
+//
+//        users.forEach {
+//            Log.i("User", "${it.username}")
+//
+//            Log.i("User", "${it.email}")
+//        }
+//
+//
+//        val purchases : ArrayList<Purchase> = PurchaseHTTPHandler().getAll()
+//
+//        purchases.forEach {
+//            Log.i("Purchase", "${it.dateAttendanceDate.toString()}")
+//
+//            Log.i("Purchase", "${it.timePurchaseTime.toString()}")
+//            val user: User = it.user as User
+//            val schedule: Schedule = it.schedule as Schedule
+//
+//            Log.i("Purchase", "${user.username}")
+//            Log.i("Purchase", "${schedule.schedule}")
+//
+//        }
+//
+//        Glide.with(this)
+//            .load(users[0].imagePath)
+//            .into(iv_acount_image)
+//
 
 
         vp2_principal.adapter = PageAdapter(this)

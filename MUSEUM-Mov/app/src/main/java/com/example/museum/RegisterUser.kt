@@ -53,6 +53,7 @@ class RegisterUser : AppCompatActivity() {
     }
 
     private fun getValues(){
+        var estado_var = true
         var full_name : String = txt_user_full_name.text.toString()
         var email_user: String = txt_email.text.toString()
         var phone_number:String =txt_phone_number.text.toString()
@@ -60,33 +61,64 @@ class RegisterUser : AppCompatActivity() {
         var password = txt_password.text.toString()
         var password_confirmation=txt_password_conf.text.toString()
 
+        if(full_name.length==0){
+            estado_var = false
+            Toast.makeText(this, "Debe ingresar un nombre", Toast.LENGTH_LONG)
+        }else
+            if(email_user.length==0){
+            estado_var = false
+            Toast.makeText(this, "Debe ingresar un email", Toast.LENGTH_LONG)
+        }else
+            if(phone_number.length==0){
+            estado_var = false
+            Toast.makeText(this, "Debe ingresar un numero", Toast.LENGTH_LONG)
+        }else
+            if(username.length==0){
+            estado_var = false
+            Toast.makeText(this, "Debe ingresar un nombre de usuario", Toast.LENGTH_LONG)
+        }else
+            if(password.length==0){
+            estado_var = false
+            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG)
+        }else
+            if(password_confirmation.length==0){
+            estado_var = false
+            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG)
+        }else if(!password.toString().equals(password_confirmation.toString())){
+            estado_var = false
+            Toast.makeText(this, "El password debe ser igual", Toast.LENGTH_LONG)
+        }
+        if(estado_var) {
+            val radioButtonID: Int = rg_profile_pictures.checkedRadioButtonId
+            val selectedRadioButton: RadioButton =
+                rg_profile_pictures.findViewById<RadioButton>(radioButtonID)
+            val index: Int = rg_profile_pictures.indexOfChild(selectedRadioButton)
 
-        val radioButtonID: Int = rg_profile_pictures.checkedRadioButtonId
-        val selectedRadioButton: RadioButton = rg_profile_pictures.findViewById<RadioButton>(radioButtonID)
-        val index: Int = rg_profile_pictures.indexOfChild(selectedRadioButton)
+            val imagePath: String = EnvironmentVariables.profilePictures[index]
 
-        val imagePath: String = EnvironmentVariables.profilePictures[index]
-
-        Log.i("Valores Registro","${full_name}," +
-                " ${email_user}," +
-                " ${phone_number}," +
-                " ${username}," +
-                " ${password}," +
-                " ${password_confirmation}, " +
-                "${imagePath}")
+            Log.i(
+                "Valores Registro", "${full_name}," +
+                        " ${email_user}," +
+                        " ${phone_number}," +
+                        " ${username}," +
+                        " ${password}," +
+                        " ${password_confirmation}, " +
+                        "${imagePath}"
+            )
 
 
-        val params:  List<Pair<String, Any>> = arrayListOf(
-            "username" to username,
-            "password" to password,
-            "email" to email_user,
-            "fullName" to full_name,
-            "phoneNumber" to phone_number,
-            "imagePath" to imagePath
-        )
-        val user: User? = userHTTPHandler.createOne(params)
-        if (user!= null){
-            Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+            val params: List<Pair<String, Any>> = arrayListOf(
+                "username" to username,
+                "password" to password,
+                "email" to email_user,
+                "fullName" to full_name,
+                "phoneNumber" to phone_number,
+                "imagePath" to imagePath
+            )
+            val user: User? = userHTTPHandler.createOne(params)
+            if (user != null) {
+                Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+            }
         }
 
     }
