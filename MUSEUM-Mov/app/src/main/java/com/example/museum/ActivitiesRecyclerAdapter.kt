@@ -40,18 +40,14 @@ class ActivitiesRecyclerAdapter(
             datesTextView = view.findViewById(R.id.tv_dates_activity_preview)
             pictureImageView = view.findViewById(R.id.iv_activity_preview)
             buyButton = view.findViewById(R.id.btn_buy_activity_preview)
-            //buyButton.setOnClickListener{goBuyActivity()}
+            buyButton.setOnClickListener{goBuyActivity()}
 
         }
 
         fun goBuyActivity(){
-            val intent : Intent = Intent(contextActivity,BuyActivity::class.java)
-            contextActivity.startActivity(intent)
-            if (id != null){
-                Log.i("ID", "El id es $id")
-            }else{
-                Log.i("ID", "No id ")
-            }
+            val intentExplicito : Intent = Intent(contextActivity,BuyActivity::class.java)
+            contextActivity.startActivity(intentExplicito)
+
         }
 
 

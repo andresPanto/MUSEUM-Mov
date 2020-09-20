@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BuyActivity"></activity>
+        <activity android:name=".BuyActivity" />
         <activity android:name=".AuthorDetailActivity" />
         <activity android:name=".ArtworkDetailActivity" />
         <activity android:name=".ActivityDetailActivity" />
