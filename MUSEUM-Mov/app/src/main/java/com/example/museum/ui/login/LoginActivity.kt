@@ -1,7 +1,9 @@
 package com.example.museum.ui.login
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,25 +11,35 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.example.museum.MainActivity
 
 import com.example.museum.R
 import com.example.museum.RegisterUser
 import com.example.museum.UserAccount
+import com.example.museum.environment.EnvironmentVariables
+import com.example.museum.httpHandlers.UserHTTPHandler
+import com.example.museum.models.User
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
 
+    private lateinit var preferences : SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
+
+
+         preferences = getSharedPreferences( EnvironmentVariables.prefsCredentialsName, Context.MODE_PRIVATE)
 
         val username = findViewById<EditText>(R.id.txt_username_log)
         val password = findViewById<EditText>(R.id.txt_password_log)
@@ -97,21 +109,44 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
-                irUserAccount()
-//                irRegistro()
+                //loginViewModel.login(username.text.toString(), password.text.toString())
+                var userExists: Boolean = findUser(username.text.toString(), password.text.toString())
+                if (userExists){
+                    goHomeScreen()
+                }else{
+                    Log.i("Log in", "fail")
+                }
+
             }
         }
+
+
+
+
         boton_registro.setOnClickListener{
             irRegistro()
         }
     }
+
+    private fun findUser(username: String, password: String): Boolean {
+        Log.i("Credenciales", "$username, $password")
+        val user: ArrayList<User> =  UserHTTPHandler().logIn(username, password)
+        if (user.size == 0){
+            return false
+        }else{
+            val editor = preferences.edit()
+            editor.putInt("userID", user[0].id).apply()
+
+            return true
+        }
+    }
+
     private fun irRegistro(){
         var intentExplicito = Intent(this, RegisterUser::class.java)
         this.startActivity(intentExplicito)
     }
-    private fun irUserAccount(){
-        var intentExplicito = Intent(this, UserAccount::class.java)
+    private fun goHomeScreen(){
+        var intentExplicito = Intent(this, MainActivity::class.java)
         this.startActivity(intentExplicito)
     }
 
