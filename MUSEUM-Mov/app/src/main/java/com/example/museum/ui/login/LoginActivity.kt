@@ -109,13 +109,23 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                //loginViewModel.login(username.text.toString(), password.text.toString())
-                var userExists: Boolean = findUser(username.text.toString(), password.text.toString())
+                loginViewModel.login(username.text.toString(), password.text.toString())
+                if(username.length()==0){
+                    Log.i("login","falta username ${username.toString()}")
+                }else if(password.length() == 0){
+                    Log.i("login","falta password ${password.toString()}")
+                }else{
+                    
+                        var userExists: Boolean = findUser(username.text.toString(), password.text.toString())
                 if (userExists){
                     goHomeScreen()
                 }else{
                     Log.i("Log in", "fail")
                 }
+                }
+                
+                
+            
 
             }
         }
