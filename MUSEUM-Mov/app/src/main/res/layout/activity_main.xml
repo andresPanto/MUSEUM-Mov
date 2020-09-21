@@ -7,24 +7,53 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"
+            android:text="MUSEUM"
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_acount_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            app:srcCompat="@drawable/ic_baseline_account_circle" />
+
+    </LinearLayout>
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp2_principal"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="90"
 
-        app:layout_constraintBottom_toBottomOf="@+id/tabL_principal"
+        app:layout_constraintBottom_toTopOf="@+id/tabL_principal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.471" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabL_principal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/cardview_compat_inset_shadow"
         android:layout_gravity="bottom"
+        android:layout_margin="@dimen/cardview_compat_inset_shadow"
         android:layout_weight="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/vp2_principal"
@@ -32,8 +61,8 @@
         app:tabBackground="@color/colorPrimaryDark"
         app:tabGravity="fill"
         app:tabIndicatorColor="@android:color/white"
-        app:tabIndicatorHeight="2dp"
         app:tabIndicatorGravity="top"
+        app:tabIndicatorHeight="2dp"
         app:tabMode="fixed"
         app:tabTextAppearance="@style/CustomTabStyle"
         app:tabTextColor="@android:color/white">

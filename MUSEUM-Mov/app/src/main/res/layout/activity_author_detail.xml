@@ -6,37 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".AuthorDetailActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="275dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/author2"
-        tools:srcCompat="@drawable/author2" />
-
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_authoir_name_detail">
+        app:layout_constraintTop_toBottomOf="@+id/tv_author_name_detail">
 
         <TextView
             android:id="@+id/tv_country_author_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="TextView"
+            android:text="Country"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/yv_author_country"
+            android:id="@+id/tv_author_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -45,21 +37,22 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_authoir_name_detail"
+        android:id="@+id/tv_author_name_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="Author1"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_image_author_detail" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -82,4 +75,14 @@
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec dapibus metus. Phasellus rutrum pulvinar interdum. Duis viverra ultrices mi, ac maximus arcu tincidunt non. Etiam augue risus, "
             android:textSize="24sp" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_image_author_detail"
+        android:layout_width="0dp"
+        android:layout_height="273dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 </androidx.constraintlayout.widget.ConstraintLayout>

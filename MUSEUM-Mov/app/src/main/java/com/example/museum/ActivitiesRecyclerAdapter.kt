@@ -12,10 +12,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.museum.models.Activity
 import com.example.museum.ui.login.LoginActivity
+
 
 class ActivitiesRecyclerAdapter(
     private val activityType: String,
+    private val activities: ArrayList<Activity>?,
     private val contextActivity: MainActivity,
     private val clickListener: MyOnActivityListener
 ): RecyclerView.Adapter<ActivitiesRecyclerAdapter.MyViewHolder>() {
@@ -41,23 +45,16 @@ class ActivitiesRecyclerAdapter(
         }
 
         fun goBuyActivity(){
-            val intent : Intent = Intent(contextActivity,BuyActivity::class.java)
-            contextActivity.startActivity(intent)
-            if (id != null){
-                Log.i("ID", "El id es $id")
-            }else{
-                Log.i("ID", "No id ")
-            }
+            val intentExplicito : Intent = Intent(contextActivity,BuyActivity::class.java)
+            contextActivity.startActivity(intentExplicito)
+
         }
 
 
 
     }
 
-    var listActivities : ArrayList<DummyActivity>
-    init {
-        listActivities = DummyDatabase.activities
-    }
+
 
 
 
@@ -73,16 +70,27 @@ class ActivitiesRecyclerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listActivities.size
+        return if(activities != null) activities.size else 0
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val activity: DummyActivity = listActivities.get(position)
+        val activity: Activity = activities!!.get(position)
+        val initialDate: String =
+            "${activity.dateInitialDate.dayOfMonth} " +
+                    "${activity.dateInitialDate.month.toString().take(3)}"
+        val finalDate: String =
+            "${activity.dateFinalDate.dayOfMonth} " +
+                    "${activity.dateFinalDate.month.toString().take(3)}"
         holder.nameTextView.text =  activity.name
-        holder.datesTextView.text =  "${activity.initialDate} - ${activity.finalDate}"
+        holder.datesTextView.text =
+            if(activity.type != "Tour")
+            "$initialDate - $finalDate"
+            else "Every day"
         holder.id = activity.id
 
-        holder.pictureImageView.setImageResource(R.drawable.ejemplo)
+        Glide.with(contextActivity)
+            .load(activity.imagePath)
+            .into(holder.pictureImageView)
         holder.itemView.setOnClickListener{
             clickListener.onActivityClicked(activity, position)
         }
@@ -93,5 +101,5 @@ class ActivitiesRecyclerAdapter(
 
 
 interface MyOnActivityListener{
-    fun onActivityClicked(activity: DummyActivity, position: Int)
+    fun onActivityClicked(activity: Activity, position: Int)
 }

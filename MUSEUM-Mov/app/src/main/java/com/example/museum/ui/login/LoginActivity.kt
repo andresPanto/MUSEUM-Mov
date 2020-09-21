@@ -9,6 +9,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
@@ -19,6 +20,7 @@ import android.widget.Toast
 import com.example.museum.R
 import com.example.museum.RegisterUser
 import com.example.museum.UserAccount
+import com.example.museum.models.User
 
 class LoginActivity : AppCompatActivity() {
 
@@ -98,8 +100,18 @@ class LoginActivity : AppCompatActivity() {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
-                irUserAccount()
-//                irRegistro()
+                if(username.length()==0){
+                    Log.i("login","falta username ${username.toString()}")
+                }else if(password.length() == 0){
+                    Log.i("login","falta password ${password.toString()}")
+                }else{
+                    val params: List<Pair<String, Any>> = arrayListOf(
+                        "username" to username.toString(),
+                        "password" to password.toString()
+                    )
+                    Log.i("login","Datos de registros ${params.get(0).toString()} ${params.get(1).toString()}")
+                    irUserAccount()
+                }
             }
         }
         boton_registro.setOnClickListener{

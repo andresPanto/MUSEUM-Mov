@@ -6,9 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.museum.models.ActivityArtwork
+import com.example.museum.models.Artwork
 
 class ArtworksAdapter(
-    private val listArtworks: List<DummyArtwork>,
+    private val listActivityArtwork: ArrayList<ActivityArtwork>,
     private val context: ActivityDetailActivity,
     private val recyclerView: RecyclerView,
     private val clickListener: MyOnArtworkClickedListener
@@ -41,20 +44,23 @@ class ArtworksAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listArtworks.size
+        return listActivityArtwork.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val artwork : DummyArtwork = listArtworks[position]
-        holder.artworkImageView.setImageResource(R.drawable.artwork1)
-        holder.artworkTitleTextView.text = artwork.title
+        val artwork : Artwork = listActivityArtwork[position].artwork as Artwork
+        Glide
+            .with(context)
+            .load(artwork.imagePath)
+            .into(holder.artworkImageView)
+        holder.artworkTitleTextView.text = artwork.name
         holder.itemView.setOnClickListener{
-            clickListener.onArtworkClicked(position)
+            clickListener.onArtworkClicked(artwork, position)
         }
     }
 
 }
 
 interface MyOnArtworkClickedListener{
-    fun onArtworkClicked(position: Int)
+    fun onArtworkClicked(artwork: Artwork, position: Int)
 }
