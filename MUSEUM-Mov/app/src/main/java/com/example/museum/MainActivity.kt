@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity(), MyOnActivityListener {
         val intent: Intent
         if (userID == 0){
             intent =  Intent(this, LoginActivity::class.java)
+
         }else{
             intent =  Intent(this, UserAccount::class.java)
         }
@@ -101,6 +102,23 @@ class MainActivity : AppCompatActivity(), MyOnActivityListener {
         intent.putExtra("id", activity.id)
         startActivity(intent)
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (userID != 0) {
+            val user: User? = UserHTTPHandler().getOne(userID)
+            if (user != null) {
+                Glide.with(this)
+                    .load(user.imagePath)
+                    .into(iv_acount_image)
+            }else{
+                Log.i("User", "No user in API")
+            }
+        }else{
+            Log.i("User", "No user credentials")
+        }
     }
 
 }

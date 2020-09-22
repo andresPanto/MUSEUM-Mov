@@ -79,6 +79,7 @@ class UserAccount : AppCompatActivity() {
     private fun irUpdateAccount(){
         var intentExplicito = Intent(this, RegisterUser::class.java)
         this.startActivity(intentExplicito)
+        finish()
     }
     private fun irLoginActivity(){
         var editor = preferences.edit()
