@@ -1,6 +1,8 @@
 package com.example.museum
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -13,14 +15,38 @@ import com.example.museum.httpHandlers.UserHTTPHandler
 import com.example.museum.models.User
 import com.example.museum.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register_user.*
+import kotlinx.android.synthetic.main.activity_user_account.*
 
 class RegisterUser : AppCompatActivity() {
     val userHTTPHandler: UserHTTPHandler = UserHTTPHandler()
+
+    private lateinit var preferences: SharedPreferences
+    private var userID: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_user)
 
+
+        preferences = getSharedPreferences(
+            EnvironmentVariables.prefsCredentialsName,
+            Context.MODE_PRIVATE)
+        userID = preferences.getInt("userID", 0)
+
+        if (userID != 0) {
+            val user: User? = UserHTTPHandler().getOne(userID)
+            if (user != null) {
+                setUpdateEnvironment(user)
+                Glide.with(this)
+                    .load(user.imagePath)
+                    .into(img_user_logo)
+            }else{
+                Log.i("User", "No user in API")
+            }
+        }else{
+            Log.i("User", "No user credentials")
+        }
 
 
 
@@ -38,6 +64,11 @@ class RegisterUser : AppCompatActivity() {
 
         setUpImages()
     }
+
+    private fun setUpdateEnvironment(user: User){
+
+    }
+
 
     private fun setUpImages(){
         val imagePaths: ArrayList<String> = EnvironmentVariables.profilePictures

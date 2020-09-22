@@ -31,9 +31,8 @@ class UserAccount : AppCompatActivity() {
         if (userID != 0) {
             val user: User? = UserHTTPHandler().getOne(userID)
             if (user != null) {
-                Glide.with(this)
-                    .load(user.imagePath)
-                    .into(img_user_logo)
+                showUserData(user)
+
             }else{
                 Log.i("User", "No user in API")
             }
@@ -59,9 +58,7 @@ class UserAccount : AppCompatActivity() {
         boton_out.setOnClickListener{
             irLoginActivity()
         }
-        img_user_logo.setOnClickListener{
-            setValues("","","","")
-        }
+
 
         iniciarRv(listPurchase,this,rv_purchase)
 
@@ -78,23 +75,27 @@ class UserAccount : AppCompatActivity() {
         adaptadorPurchase.notifyDataSetChanged()
     }
 
-    private fun setValues(username:String,name:String,email:String,phone:String){
-        txt_username_r.setText(username)
-        txt_name_user.setText(name)
-        txt_email_user.setText(email)
-        txt_phone_user.setText(phone)
-    }
+
     private fun irUpdateAccount(){
-        var intentExplicito = Intent(this, UpdateAccount::class.java)
+        var intentExplicito = Intent(this, RegisterUser::class.java)
         this.startActivity(intentExplicito)
     }
     private fun irLoginActivity(){
         var editor = preferences.edit()
         editor.putInt("userID", 0).apply()
 
-
-
         var intentExplicito = Intent(this, MainActivity::class.java)
         this.startActivity(intentExplicito)
     }
+
+    private fun showUserData(user: User){
+        Glide.with(this)
+            .load(user.imagePath)
+            .into(img_user_logo)
+        txt_name_user.text = user.fullName
+        txt_email_user.text = user.email
+        txt_phone_user.text = user.phoneNumber
+        txt_username_r.text = user.username
+    }
+
 }
