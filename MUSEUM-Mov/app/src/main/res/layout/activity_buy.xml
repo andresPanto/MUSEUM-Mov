@@ -7,10 +7,11 @@
     tools:context=".BuyActivity">
 
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="400dp"
-        android:layout_height="150dp"
+        android:id="@+id/iv_activity_buy_activity"
+        android:layout_width="414dp"
+        android:layout_height="147dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/artwork1" />
@@ -24,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.20"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_activity_buy_activity" />
 
     <TextView
         android:id="@+id/textView14"
@@ -182,11 +183,13 @@
         android:id="@+id/txt_calendar"
         android:layout_width="150dp"
         android:layout_height="30dp"
+        android:layout_marginStart="16dp"
         android:text="1/1/2020"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_calendar"
         app:layout_constraintStart_toEndOf="@+id/btn_calendar"
-        app:layout_constraintTop_toTopOf="@+id/btn_calendar" />
+        app:layout_constraintTop_toTopOf="@+id/btn_calendar"
+        app:layout_constraintVertical_bias="0.4" />
 
     <Button
         android:id="@+id/btn_calendar"

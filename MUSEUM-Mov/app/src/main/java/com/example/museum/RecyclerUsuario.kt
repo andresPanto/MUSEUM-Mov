@@ -1,30 +1,42 @@
 package com.example.museum
 
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.museum.httpHandlers.ScheduleHTTPHandler
+import com.example.museum.models.Activity
+import com.example.museum.models.Purchase
+import com.example.museum.models.Schedule
 
 class RecyclerUsuario (
-    private val listPurchase : List<Purchase>,
-    private val contextoPurchase : UserAccount,
-    private val recyclerView: RecyclerView
-):androidx.recyclerview.widget.RecyclerView.Adapter<RecyclerUsuario.ViewPagerViewPurchase>(){
+    private val listPurchase : ArrayList<Purchase>,
+    private val context : UserAccount
+):RecyclerView.Adapter<RecyclerUsuario.ViewPagerViewPurchase>(){
     inner class ViewPagerViewPurchase(view: View):
-            androidx.recyclerview.widget.RecyclerView.ViewHolder(view){
+            RecyclerView.ViewHolder(view){
 
-        var algo1 : TextView
-        var algo2 : TextView
-        var accionButton:Button
+        var activityNameTextView : TextView
+        var scheduleTextView : TextView
+        var attendanceDateTextView: TextView
+        var totalTextView: TextView
+        var quantityTextView: TextView
+        var purchaseTimeTextView: TextView
+
         init {
-            algo1= view.findViewById(R.id.txt_purchase_name)
-            algo2=view.findViewById(R.id.txt_purchase_quantity)
-            accionButton=view.findViewById(R.id.btn_edit_purchase)
+            activityNameTextView = view.findViewById(R.id.tv_purchase_name)
+            scheduleTextView = view.findViewById(R.id.tv_purchase_schedule)
+            attendanceDateTextView = view.findViewById(R.id.tv_attendance_date_purchase)
+            totalTextView = view.findViewById(R.id.tv_purchase_total)
+            quantityTextView = view.findViewById(R.id.tv_quantity_purchase)
+            purchaseTimeTextView = view.findViewById(R.id.tv_purchase_time)
+
+
         }
     }
+    val scheduleHandler : ScheduleHTTPHandler = ScheduleHTTPHandler()
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int): RecyclerUsuario.ViewPagerViewPurchase {
@@ -44,14 +56,23 @@ class RecyclerUsuario (
     }
 
     override fun onBindViewHolder(holder: ViewPagerViewPurchase, position: Int) {
-        var purchase = listPurchase[position]
-        holder.algo1.text = purchase.name
-        holder.algo2.text = purchase.name
-        holder.accionButton.text = "Like ${purchase.name}"
+        var purchase: Purchase = listPurchase[position]
+        val scheduleID: Int = purchase.schedule as Int
+        var schedule: Schedule? = scheduleHandler.getOne(scheduleID) // es int no Schedule???
+        if (schedule != null){
+            var activity: Activity = schedule.activity as Activity
+            holder.scheduleTextView.text = schedule.schedule
+            holder.activityNameTextView.text = activity.name
+        }
+
+
+        holder.attendanceDateTextView.text = purchase.dateAttendanceDate.toString()
+        holder.purchaseTimeTextView.text = purchase.timePurchaseTime.toString()
+        holder.totalTextView.text = purchase.total.toString()
+        holder.quantityTextView.text = purchase.quantity.toString()
+
+
     }
 
 }
 
-class Purchase(var name:String){
-
-}

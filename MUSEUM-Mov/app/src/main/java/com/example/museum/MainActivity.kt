@@ -107,6 +107,8 @@ class MainActivity : AppCompatActivity(), MyOnActivityListener {
 
     override fun onResume() {
         super.onResume()
+
+        userID = preferences.getInt("userID", 0)
         if (userID != 0) {
             val user: User? = UserHTTPHandler().getOne(userID)
             if (user != null) {

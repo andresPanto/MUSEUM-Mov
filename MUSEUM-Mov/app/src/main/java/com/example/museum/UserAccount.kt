@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.museum.environment.EnvironmentVariables
 import com.example.museum.httpHandlers.UserHTTPHandler
+import com.example.museum.models.Purchase
 import com.example.museum.models.User
 import com.example.museum.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,14 +42,6 @@ class UserAccount : AppCompatActivity() {
             Log.i("User", "No user credentials")
         }
 
-        var listPurchase = arrayListOf<Purchase>()
-        listPurchase.add(
-            Purchase("nombre 1")
-        )
-
-        listPurchase.add(
-            Purchase("nombre 2")
-        )
 
         val boton_update = findViewById<Button>(R.id.btn_update_account)
         val boton_out = findViewById<Button>(R.id.btn_log_out)
@@ -60,18 +54,19 @@ class UserAccount : AppCompatActivity() {
         }
 
 
-        iniciarRv(listPurchase,this,rv_purchase)
+
 
     }
+
     fun iniciarRv(
-        list: List<Purchase>,
-        activity: UserAccount,
-        recicler_view: RecyclerView
+        list: ArrayList<Purchase>,
+        activity: UserAccount
     ){
-        val adaptadorPurchase = RecyclerUsuario(list,activity,recicler_view)
+        val adaptadorPurchase = RecyclerUsuario(list,activity)
         rv_purchase.adapter = adaptadorPurchase
         rv_purchase.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_purchase.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        rv_purchase.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         adaptadorPurchase.notifyDataSetChanged()
     }
 
@@ -97,6 +92,7 @@ class UserAccount : AppCompatActivity() {
         txt_email_user.text = user.email
         txt_phone_user.text = user.phoneNumber
         txt_username_r.text = user.username
+        iniciarRv(user.purchases!!, this)
     }
 
 }

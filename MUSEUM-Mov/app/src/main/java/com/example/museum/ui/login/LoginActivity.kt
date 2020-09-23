@@ -18,11 +18,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.example.museum.MainActivity
+import com.example.museum.*
 
-import com.example.museum.R
-import com.example.museum.RegisterUser
-import com.example.museum.UserAccount
 import com.example.museum.environment.EnvironmentVariables
 import com.example.museum.httpHandlers.UserHTTPHandler
 import com.example.museum.models.User
@@ -31,7 +28,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
 
-    private lateinit var preferences : SharedPreferences
+    private lateinit var preferences: SharedPreferences
+    private var activity: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +37,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-         preferences = getSharedPreferences( EnvironmentVariables.prefsCredentialsName, Context.MODE_PRIVATE)
+        preferences =
+            getSharedPreferences(EnvironmentVariables.prefsCredentialsName, Context.MODE_PRIVATE)
+        activity = intent.getIntExtra("activityID", 0)
 
         val username = findViewById<EditText>(R.id.txt_username_log)
         val password = findViewById<EditText>(R.id.txt_password_log)
@@ -110,22 +110,21 @@ class LoginActivity : AppCompatActivity() {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
-                if(username.length()==0){
-                    Log.i("login","falta username ${username.toString()}")
-                }else if(password.length() == 0){
-                    Log.i("login","falta password ${password.toString()}")
-                }else{
-                    
-                        var userExists: Boolean = findUser(username.text.toString(), password.text.toString())
-                if (userExists){
-                    goHomeScreen()
-                }else{
-                    Log.i("Log in", "fail")
+                if (username.length() == 0) {
+                    Log.i("login", "falta username ${username.toString()}")
+                } else if (password.length() == 0) {
+                    Log.i("login", "falta password ${password.toString()}")
+                } else {
+
+                    var userExists: Boolean =
+                        findUser(username.text.toString(), password.text.toString())
+                    if (userExists) {
+                        goHomeScreen()
+                    } else {
+                        Log.i("Log in", "fail")
+                    }
                 }
-                }
-                
-                
-            
+
 
             }
         }
@@ -133,30 +132,41 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        boton_registro.setOnClickListener{
+        boton_registro.setOnClickListener {
             irRegistro()
         }
     }
 
     private fun findUser(username: String, password: String): Boolean {
         Log.i("Credenciales", "$username, $password")
-        val user: ArrayList<User> =  UserHTTPHandler().logIn(username, password)
-        if (user.size == 0){
+        val user: ArrayList<User> = UserHTTPHandler().logIn(username, password)
+        if (user.size == 0) {
             return false
-        }else{
+        } else {
             val editor = preferences.edit()
-            editor.putInt("userID", user[0].id).apply()
+            editor.putInt("userID", user[0].id)
+            editor.commit()
 
             return true
         }
     }
 
-    private fun irRegistro(){
+    private fun irRegistro() {
         var intentExplicito = Intent(this, RegisterUser::class.java)
         this.startActivity(intentExplicito)
     }
-    private fun goHomeScreen(){
-        var intentExplicito = Intent(this, MainActivity::class.java)
+
+    private fun goHomeScreen() {
+        var intentExplicito: Intent
+        if (activity == 0){
+            intentExplicito = Intent(this, MainActivity::class.java)
+            finish()
+        }else{
+            intentExplicito = Intent(this, BuyActivity::class.java)
+            intentExplicito.putExtra("activityID", activity)
+            finish()
+        }
+
         this.startActivity(intentExplicito)
     }
 
