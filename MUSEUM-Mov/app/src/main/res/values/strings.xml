@@ -29,14 +29,14 @@
     <string name="A_have_account">Already have an account?</string>
     <string name="log_out">Log Out</string>
     <string name="update_account">Update My Account</string>
-    <string name="purchase">Purchase</string>
+    <string name="purchase">Purchases</string>
     <string name="edit_account">Edit Account</string>
     <string name="update_image">Update Image</string>
     <string name="select_image">Select Image</string>
-    <string name="name">Name:</string>
+    <string name="name">Name</string>
     <string name="save">Save</string>
 
-    <string name="attendance_time">Attendance time</string>
+    <string name="attendance_time">Attendance Date</string>
     <string name="purchase_time">Purchase time:</string>
     <string name="quantity">Quantity:</string>
     <string name="schedule">Schedule:</string>
