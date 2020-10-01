@@ -141,6 +141,7 @@ class RegisterUser : AppCompatActivity() {
     }
 
     private fun getValues(){
+        Log.i("GetValues", "En la funcion")
         var estado_var = true
         var full_name : String = txt_user_full_name.text.toString()
         var email_user: String = txt_email.text.toString()
@@ -177,6 +178,7 @@ class RegisterUser : AppCompatActivity() {
             Toast.makeText(this, "El password debe ser igual", Toast.LENGTH_LONG)
         }
         if(estado_var) {
+            Log.i("Crear", "Se puede crear")
             val radioButtonID: Int = rg_profile_pictures.checkedRadioButtonId
             val selectedRadioButton: RadioButton =
                 rg_profile_pictures.findViewById<RadioButton>(radioButtonID)
@@ -205,7 +207,15 @@ class RegisterUser : AppCompatActivity() {
             )
             val user: User? = userHTTPHandler.createOne(params)
             if (user != null) {
+                Log.i("User creado", "${user.fullName}")
                 Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+                val editor = preferences.edit()
+                editor.putInt("userID", user.id)
+                editor.commit()
+                val intent: Intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+
             }
         }
 
