@@ -20,6 +20,11 @@
 
     <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
         <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="colorPrimary"> #a66724 </item>
     </style>
-    
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground"> @drawable/splash_screen</item>
+    </style>
+
 </resources>
