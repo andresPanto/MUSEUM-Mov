@@ -42,6 +42,34 @@ class ScheduleHTTPHandler {
     }
 
 
+    fun getAllByActivity(idActicvity: Int): ArrayList<Schedule> {
+        val url = URLPrincipal+ "?activity=${idActicvity}";
+        var schedules: ArrayList<Schedule> = arrayListOf()
+        val getHttp = url.httpGet().responseString { request, response, result ->
+            when (result) {
+                is Result.Failure -> {
+                    val ex = result.getException()
+                    val error = result.error
+                    Log.i("http-klaxon", "Error: ${ex.message}")
+                }
+                is Result.Success -> {
+                    val data = result.get();
+                    schedules = ArrayList(
+                        Klaxon()
+                            .converter(Schedule.conversorSchedule)
+                            .parseArray<Schedule>(data)!!
+                    )
+                    schedules.forEach {
+                        Log.i("Result Succes", "$it")
+                    }
+                }
+            }
+        }
+        getHttp.join()
+        return schedules;
+    }
+
+
     fun getOne(id: Int): Schedule? {
         val url = URLPrincipal + "/$id";
         var schedule: Schedule? = null;
