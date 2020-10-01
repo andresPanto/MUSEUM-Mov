@@ -152,30 +152,30 @@ class RegisterUser : AppCompatActivity() {
 
         if(full_name.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un nombre", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un nombre", Toast.LENGTH_LONG).show()
         }else
             if(email_user.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un email", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un email", Toast.LENGTH_LONG).show()
         }else
             if(phone_number.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un numero", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un numero", Toast.LENGTH_LONG).show()
         }else
             if(username.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un nombre de usuario", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un nombre de usuario", Toast.LENGTH_LONG).show()
         }else
             if(password.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG).show()
         }else
             if(password_confirmation.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG).show()
         }else if(!password.toString().equals(password_confirmation.toString())){
             estado_var = false
-            Toast.makeText(this, "El password debe ser igual", Toast.LENGTH_LONG)
+            Toast.makeText(this, "El password debe ser igual", Toast.LENGTH_LONG).show()
         }
         if(estado_var) {
             Log.i("Crear", "Se puede crear")
