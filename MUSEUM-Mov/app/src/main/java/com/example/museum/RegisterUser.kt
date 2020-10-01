@@ -141,6 +141,7 @@ class RegisterUser : AppCompatActivity() {
     }
 
     private fun getValues(){
+        Log.i("GetValues", "En la funcion")
         var estado_var = true
         var full_name : String = txt_user_full_name.text.toString()
         var email_user: String = txt_email.text.toString()
@@ -151,32 +152,33 @@ class RegisterUser : AppCompatActivity() {
 
         if(full_name.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un nombre", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un nombre", Toast.LENGTH_LONG).show()
         }else
             if(email_user.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un email", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un email", Toast.LENGTH_LONG).show()
         }else
             if(phone_number.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un numero", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un numero", Toast.LENGTH_LONG).show()
         }else
             if(username.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un nombre de usuario", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un nombre de usuario", Toast.LENGTH_LONG).show()
         }else
             if(password.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG).show()
         }else
             if(password_confirmation.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG).show()
         }else if(!password.toString().equals(password_confirmation.toString())){
             estado_var = false
-            Toast.makeText(this, "El password debe ser igual", Toast.LENGTH_LONG)
+            Toast.makeText(this, "El password debe ser igual", Toast.LENGTH_LONG).show()
         }
         if(estado_var) {
+            Log.i("Crear", "Se puede crear")
             val radioButtonID: Int = rg_profile_pictures.checkedRadioButtonId
             val selectedRadioButton: RadioButton =
                 rg_profile_pictures.findViewById<RadioButton>(radioButtonID)
@@ -205,7 +207,15 @@ class RegisterUser : AppCompatActivity() {
             )
             val user: User? = userHTTPHandler.createOne(params)
             if (user != null) {
+                Log.i("User creado", "${user.fullName}")
                 Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+                val editor = preferences.edit()
+                editor.putInt("userID", user.id)
+                editor.commit()
+                val intent: Intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+
             }
         }
 
