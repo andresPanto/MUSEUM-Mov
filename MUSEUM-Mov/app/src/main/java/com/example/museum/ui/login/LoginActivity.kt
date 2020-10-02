@@ -36,100 +36,32 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
-
-        preferences =
-            getSharedPreferences(EnvironmentVariables.prefsCredentialsName, Context.MODE_PRIVATE)
-        activity = intent.getIntExtra("activityID", 0)
-
         val username = findViewById<EditText>(R.id.txt_username_log)
         val password = findViewById<EditText>(R.id.txt_password_log)
         val login = findViewById<Button>(R.id.btn_log_in)
         val loading = findViewById<ProgressBar>(R.id.loading)
         val boton_registro = findViewById<Button>(R.id.btn_sing_up)
-//        val boton_lo = findViewById<Button>(R.id.btn_log_in)
 
-        loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
 
-        loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
-            val loginState = it ?: return@Observer
+        login.setOnClickListener {
+            if (username.length() == 0) {
+                Log.i("login", "falta username ${username.toString()}")
+                Toast.makeText(this, "Debe ingresar un username", Toast.LENGTH_LONG).show()
+            } else if (password.length() == 0) {
+                Log.i("login", "falta password ${password.toString()}")
+                Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG).show()
+            } else {
 
-            // disable login button unless both username / password is valid
-            login.isEnabled = loginState.isDataValid
-
-            if (loginState.usernameError != null) {
-                username.error = getString(loginState.usernameError)
-            }
-            if (loginState.passwordError != null) {
-                password.error = getString(loginState.passwordError)
-            }
-        })
-
-        loginViewModel.loginResult.observe(this@LoginActivity, Observer {
-            val loginResult = it ?: return@Observer
-
-            loading.visibility = View.GONE
-            if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
-            }
-            if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
-            }
-            setResult(Activity.RESULT_OK)
-
-            //Complete and destroy login activity once successful
-            finish()
-        })
-
-        username.afterTextChanged {
-            loginViewModel.loginDataChanged(
-                username.text.toString(),
-                password.text.toString()
-            )
-        }
-
-        password.apply {
-            afterTextChanged {
-                loginViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
-                )
-            }
-
-            setOnEditorActionListener { _, actionId, _ ->
-                when (actionId) {
-                    EditorInfo.IME_ACTION_DONE ->
-                        loginViewModel.login(
-                            username.text.toString(),
-                            password.text.toString()
-                        )
-                }
-                false
-            }
-
-            login.setOnClickListener {
-                loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
-                if (username.length() == 0) {
-                    Log.i("login", "falta username ${username.toString()}")
-                } else if (password.length() == 0) {
-                    Log.i("login", "falta password ${password.toString()}")
+                var userExists: Boolean =
+                    findUser(username.text.toString(), password.text.toString())
+                if (userExists) {
+                    goHomeScreen()
                 } else {
-
-                    var userExists: Boolean =
-                        findUser(username.text.toString(), password.text.toString())
-                    if (userExists) {
-                        goHomeScreen()
-                    } else {
-                        Log.i("Log in", "fail")
-                    }
+                    Log.i("Log in", "fail")
+                    Toast.makeText(this, "Error en  el username o el password", Toast.LENGTH_LONG).show()
                 }
-
-
             }
         }
-
-
 
 
         boton_registro.setOnClickListener {
@@ -170,16 +102,6 @@ class LoginActivity : AppCompatActivity() {
         this.startActivity(intentExplicito)
     }
 
-    private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
-        // TODO : initiate successful logged in experience
-
-    }
-
-    private fun showLoginFailed(@StringRes errorString: Int) {
-        Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
-    }
 }
 
 /**
