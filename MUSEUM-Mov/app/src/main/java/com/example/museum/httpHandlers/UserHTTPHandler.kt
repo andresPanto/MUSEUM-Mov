@@ -61,6 +61,36 @@ class UserHTTPHandler {
         return user
     }
 
+
+
+
+    fun logIn(username: String, password: String): ArrayList<User> {
+        val url = URLPrincipal + "?username=$username&password=$password";
+        var users: ArrayList<User> = arrayListOf()
+        val getHttp = url.httpGet().responseString { request, response, result ->
+            when (result) {
+                is Result.Failure -> {
+                    val ex = result.getException()
+                    val error = result.error
+                    Log.i("http-klaxon", "Error: ${ex.message}")
+                }
+                is Result.Success -> {
+                    val data = result.get();
+                    users = ArrayList(
+                        Klaxon()
+                            .converter(User.conversorUser)
+                            .parseArray<User>(data)!!
+                    )
+                    users.forEach {
+                        Log.i("Result Succes", "$it")
+                    }
+                }
+            }
+        }
+        getHttp.join()
+        return users;
+    }
+
     fun deleteOne(id: Int): User? {
         val url = URLPrincipal + "/$id";
         var user: User? = null;

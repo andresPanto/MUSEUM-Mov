@@ -1,6 +1,8 @@
 package com.example.museum
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -13,23 +15,43 @@ import com.example.museum.httpHandlers.UserHTTPHandler
 import com.example.museum.models.User
 import com.example.museum.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register_user.*
+import kotlinx.android.synthetic.main.activity_user_account.*
 
 class RegisterUser : AppCompatActivity() {
     val userHTTPHandler: UserHTTPHandler = UserHTTPHandler()
+
+    private lateinit var preferences: SharedPreferences
+    private var userID: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_user)
 
 
+        preferences = getSharedPreferences(
+            EnvironmentVariables.prefsCredentialsName,
+            Context.MODE_PRIVATE)
+        userID = preferences.getInt("userID", 0)
 
+        if (userID != 0) {
+            val user: User? = UserHTTPHandler().getOne(userID)
+            if (user != null) {
+                setUpdateEnvironment(user)
 
-        btn_sing_me_up.setOnClickListener{
-            getValues()
+            }else{
+                Log.i("User", "No user in API")
+            }
+        }else{
+            Log.i("User", "No user credentials")
+            btn_sing_me_up.setOnClickListener{
+                getValues()
+            }
+            btn_log_in_r.setOnClickListener{
+                irLoginActivity()
+            }
         }
-        btn_log_in_r.setOnClickListener{
-            irLoginActivity()
-        }
+
         iv_monalisa.setOnClickListener { selectButton(0) }
         iv_scream.setOnClickListener { selectButton(1) }
         iv_marilyn.setOnClickListener { selectButton(2) }
@@ -38,6 +60,72 @@ class RegisterUser : AppCompatActivity() {
 
         setUpImages()
     }
+
+    private fun setUpdateEnvironment(user: User){
+        textView5.text = "Update Your Account"
+        textView6.text = "Change your information"
+        txt_user_full_name.setText(user.fullName)
+        txt_email.setText(user.email)
+        txt_phone_number.setText(user.phoneNumber)
+        txt_uesrname_reg.setText(user.username)
+        txt_password.setText(user.password)
+        txt_password_conf.setText(user.password)
+        val pictureID: Int = EnvironmentVariables.profilePictures.indexOf(user.imagePath)
+        Log.i("PictureID", "$pictureID")
+        when(pictureID){
+            0 -> rg_profile_pictures.check(R.id.radio0)
+            1 -> rg_profile_pictures.check(R.id.radio01)
+            2 -> rg_profile_pictures.check(R.id.radio02)
+            3 -> rg_profile_pictures.check(R.id.radio03)
+            else -> rg_profile_pictures.check(R.id.radio0)
+
+        }
+        btn_sing_me_up.text = "Update"
+        textView10.text = "Not updating?"
+        btn_log_in_r.text = "Go back"
+
+
+        txt_user_full_name.isEnabled = false
+        txt_uesrname_reg.isEnabled = false
+        txt_password.isEnabled = false
+        txt_password_conf.isEnabled = false
+
+        btn_log_in_r.setOnClickListener{ goBack()}
+        btn_sing_me_up.setOnClickListener{ update() }
+
+
+    }
+
+    private fun update(){
+        val intent: Intent = Intent(this, UserAccount::class.java)
+        val email: String = txt_email.text.toString()
+        val phone: String = txt_phone_number.text.toString()
+        val radioButtonID: Int = rg_profile_pictures.checkedRadioButtonId
+        val selectedRadioButton: RadioButton =
+            rg_profile_pictures.findViewById<RadioButton>(radioButtonID)
+        val index: Int = rg_profile_pictures.indexOfChild(selectedRadioButton)
+
+        val imagePath: String = EnvironmentVariables.profilePictures[index]
+        val params: List<Pair<String, Any>> = arrayListOf(
+            "email" to email,
+            "phoneNumber" to phone,
+            "imagePath" to imagePath
+        )
+        val user: User? = userHTTPHandler.updateOne(params, userID)
+        if (user != null) {
+            Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+            startActivity(intent)
+            finish()
+        }
+
+    }
+
+    private fun goBack(){
+        var intentExplicito = Intent(this, UserAccount::class.java)
+        this.startActivity(intentExplicito)
+        finish()
+    }
+
 
     private fun setUpImages(){
         val imagePaths: ArrayList<String> = EnvironmentVariables.profilePictures
@@ -53,6 +141,7 @@ class RegisterUser : AppCompatActivity() {
     }
 
     private fun getValues(){
+        Log.i("GetValues", "En la funcion")
         var estado_var = true
         var full_name : String = txt_user_full_name.text.toString()
         var email_user: String = txt_email.text.toString()
@@ -63,32 +152,33 @@ class RegisterUser : AppCompatActivity() {
 
         if(full_name.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un nombre", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un nombre", Toast.LENGTH_LONG).show()
         }else
             if(email_user.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un email", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un email", Toast.LENGTH_LONG).show()
         }else
             if(phone_number.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un numero", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un numero", Toast.LENGTH_LONG).show()
         }else
             if(username.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un nombre de usuario", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un nombre de usuario", Toast.LENGTH_LONG).show()
         }else
             if(password.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG).show()
         }else
             if(password_confirmation.length==0){
             estado_var = false
-            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Debe ingresar un password", Toast.LENGTH_LONG).show()
         }else if(!password.toString().equals(password_confirmation.toString())){
             estado_var = false
-            Toast.makeText(this, "El password debe ser igual", Toast.LENGTH_LONG)
+            Toast.makeText(this, "El password debe ser igual", Toast.LENGTH_LONG).show()
         }
         if(estado_var) {
+            Log.i("Crear", "Se puede crear")
             val radioButtonID: Int = rg_profile_pictures.checkedRadioButtonId
             val selectedRadioButton: RadioButton =
                 rg_profile_pictures.findViewById<RadioButton>(radioButtonID)
@@ -117,7 +207,15 @@ class RegisterUser : AppCompatActivity() {
             )
             val user: User? = userHTTPHandler.createOne(params)
             if (user != null) {
+                Log.i("User creado", "${user.fullName}")
                 Toast.makeText(this, "Usuario Creado", Toast.LENGTH_LONG)
+                val editor = preferences.edit()
+                editor.putInt("userID", user.id)
+                editor.commit()
+                val intent: Intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+
             }
         }
 

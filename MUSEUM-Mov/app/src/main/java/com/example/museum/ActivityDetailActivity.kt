@@ -1,6 +1,8 @@
 package com.example.museum
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,19 +11,30 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.museum.environment.EnvironmentVariables
 import com.example.museum.httpHandlers.ActivityArtworkHTTPHandler
 import com.example.museum.httpHandlers.ActivityHTTPHandler
 import com.example.museum.models.Activity
 import com.example.museum.models.ActivityArtwork
 import com.example.museum.models.Artwork
+import com.example.museum.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class ActivityDetailActivity : AppCompatActivity(), MyOnArtworkClickedListener {
     val activityHandler: ActivityHTTPHandler = ActivityHTTPHandler()
     val activityArtworkHandler: ActivityArtworkHTTPHandler = ActivityArtworkHTTPHandler()
+
+    lateinit var preferences: SharedPreferences
+    var userID: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
+        preferences = getSharedPreferences(
+            EnvironmentVariables.prefsCredentialsName,
+            Context.MODE_PRIVATE)
+        userID = preferences.getInt("userID", 0)
 
         val id: Int = intent.getIntExtra("id", 0)
         if (id == 0){
@@ -67,6 +80,21 @@ class ActivityDetailActivity : AppCompatActivity(), MyOnArtworkClickedListener {
         tv_pm_phone.text = activity.pmPhoneNumber
         tv_pm_name.text = activity.pmName
         btn_buy_activity.text = "Buy it for: $${activity.price}"
+        btn_buy_activity.setOnClickListener { goBuyActivity(activity.id) }
+    }
+
+    fun goBuyActivity(activityID: Int){
+        val  intentExplicito : Intent
+        if (userID == 0){
+            intentExplicito = Intent(this, LoginActivity::class.java)
+        }else {
+            intentExplicito = Intent(this,BuyActivity::class.java)
+
+        }
+
+        intentExplicito.putExtra("activityID", activityID )
+        this.startActivity(intentExplicito)
+        finish()
     }
     
     fun initializeRecyclerViewArtwork(

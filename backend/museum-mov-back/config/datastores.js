@@ -50,9 +50,9 @@ module.exports.datastores = {
     ***************************************************************************/
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
-    // adapter: 'sails-mysql',
-    //  url: 'mysql://patrick:root12345@localhost:3306/museum_mov',
-
+//     adapter: 'sails-mysql',
+//     url: 'mysql://museum-mov:museum-mov@localhost:32771/museum-mov',
+//
   },
 
 
